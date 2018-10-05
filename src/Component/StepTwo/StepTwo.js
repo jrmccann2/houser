@@ -26,6 +26,7 @@ class StepTwo extends Component {
                 <input type="text" placeholder="Image URL" name='image' onChange={this.handleInput} />
             </p>
             <Link to='/'><button className='btn'>Cancel</button></Link>
+            <Link to='/wizard/stepOne'><button>Previous Step</button></Link>
             <Link to='/wizard/stepThree'><button>Next Step</button></Link>
         </div>
         );

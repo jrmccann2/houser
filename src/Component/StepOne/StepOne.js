@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
 import { connect } from 'react-redux';
+import { stepOne } from '../../ducks/reducer';
 
 class StepOne extends Component {
     constructor(props){
@@ -22,6 +23,8 @@ class StepOne extends Component {
     }
 
     render() {
+
+        const { stepOne } = this.props
         
         return (
         <div className="Wizard">
@@ -46,10 +49,20 @@ class StepOne extends Component {
                 <input type="text" placeholder="ZIP" name='zip' onChange={this.handleInput} />
             </p>
             <Link to='/'><button className='btn'>Cancel</button></Link>
-            <Link to='/wizard/stepTwo'><button>Next Step</button></Link>
+            <Link to='/wizard/stepTwo'><button onClick={ () => stepOne(e.target.value)}>Next Step</button></Link>
         </div>
         );
     }
 }
 
-export default StepOne;
+function mapStateToProps(state) {
+    return {
+        name: state.name,
+        address: state.address,
+        city: state.city,
+        state: state.state,
+        zip: state.zip
+    }
+}
+
+export default connect (mapStateToProps, { stepOne })(StepOne);
