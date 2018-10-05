@@ -20,6 +20,12 @@ massive(process.env.CONNECTION_STRING)
     console.log(err)
 })
 
+app.get('/api/houses', controller.get);
+
+app.post('/api/createHouse', controller.post);
+
+app.delete('/api/deleteHouse/:id', controller.delete);
+
 app.listen(port, () => {
     console.log(`Docked at port: ${port}`)
 })

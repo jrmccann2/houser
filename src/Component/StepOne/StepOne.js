@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
 
-class Wizard extends Component {
+import { connect } from 'react-redux';
+
+class StepOne extends Component {
     constructor(props){
         super(props);
 
@@ -14,24 +15,16 @@ class Wizard extends Component {
             zip: 0
         }
         this.handleInput = this.handleInput.bind(this)
-        this.createHouse = this.createHouse.bind(this)
     }
 
     handleInput(event){
         this.setState({[event.target.name]: event.target.value})
     }
 
-    createHouse(){
-        let {name, address, city, state, zip} = this.state
-        axios.post('/api/createHouse', {name, address, city, state, zip})
-            .then()
-    }
-
     render() {
         
         return (
         <div className="Wizard">
-            Wizard
             <p>
                 Name:
                 <input type="text" placeholder="Name" name='name' onChange={this.handleInput} />
@@ -52,11 +45,11 @@ class Wizard extends Component {
                 ZIP:
                 <input type="text" placeholder="ZIP" name='zip' onChange={this.handleInput} />
             </p>
-            <Link to='/'><button className='btn' onClick={this.createHouse}>Complete</button></Link>
             <Link to='/'><button className='btn'>Cancel</button></Link>
+            <Link to='/wizard/stepTwo'><button>Next Step</button></Link>
         </div>
         );
     }
 }
 
-export default Wizard;
+export default StepOne;
